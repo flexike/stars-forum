@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// SCHEMES
+enum UserRole {
+  admin
+  moderator
+  user
+}
+
+model User {
+  id  Int  @id @default(autoincrement())
+  username String @unique
+  passwordHash String
+  nickname String
+  role UserRole @default(user)
+
+  posts Post[] @relation("UserPosts")
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  author User @relation("UserPosts", fields: [authorId], references: [id])
+  authorId Int
+  title String
+  content String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

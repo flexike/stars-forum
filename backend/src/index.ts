@@ -1,18 +1,16 @@
-import { Elysia } from 'elysia'
-import {usersRouter} from "./routes/users";
+import { Elysia } from "elysia";
+import { apiRouter } from "./api";
 
 const app = new Elysia()
-    .get('/', () => 'Stars forum is running!')
+  .get("/", () => "Stars forum is running!")
 
-    .get('/welcome', () => ({
-        status: 'ok',
-        message: "Welcome to STARS!"
-    }))
+  .get("/welcome", () => ({
+    status: "ok",
+    message: "Welcome to STARS!",
+  }))
 
-    // /api/users routes
-    .use(usersRouter)
+  // /api/users routes
+  .use(apiRouter)
 
-
-
-.listen(8080)
-console.log(` STARS forum back-end is running on: `, app.server?.port)
+  .listen(8080);
+console.log(` STARS forum back-end is running on: `, app.server?.port);
