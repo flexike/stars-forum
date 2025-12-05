@@ -6,7 +6,7 @@ import { prisma } from "../db/prisma.ts";
 export const postsGroup = (app: Elysia<any>) =>
   app
     .get("/", async () => {
-      return await prisma.post.findMany();
+      return prisma.post.findMany();
     })
     .get(
       "/:id",
