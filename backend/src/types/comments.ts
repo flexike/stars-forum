@@ -11,13 +11,20 @@ export type Comment = {
   createdAt: Date;
   updatedAt: Date;
 
-  post: Post;
-  postId: number;
+  post?: Post | null;
+  postId?: number | null;
 
-  thread: Thread;
-  threadId: number;
+  thread?: Thread | null;
+  threadId?: number | null;
 };
 
-export const CommentsNewInpit = t.Object({
+export const CommentsNewInput = t.Object({
+  content: t.String(),
+  postId: t.Optional(t.Number()),
+  threadId: t.Optional(t.Number()),
+  authorId: t.Number(),
+});
+
+export const CommentsPatchInput = t.Object({
   content: t.String(),
 });
